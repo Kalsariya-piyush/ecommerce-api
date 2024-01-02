@@ -46,6 +46,10 @@ app.use('/api/color', colorRouter);
 app.use('/api/enquiry', enqRouter);
 app.use('/api/upload', uploadRouter);
 
+app.get('/', async (req, res) => {
+  res.send('Server is running ... !!!');
+});
+
 app.use(notFound);
 app.use(errorHandler);
 app.listen(PORT, () => {
