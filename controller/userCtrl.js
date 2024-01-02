@@ -118,7 +118,7 @@ const loginAdmin = asyncHandler(async (req, res) => {
       { new: true }
     );
     res.cookie('refreshToken', refreshToken, {
-      httpOnly: true,
+      httpOnly: false,
       maxAge: 72 * 60 * 60 * 1000,
     });
     res.json({
