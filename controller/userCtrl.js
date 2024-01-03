@@ -53,10 +53,10 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
       },
       { new: true }
     );
-    res.cookie('refreshToken', refreshToken, {
-      httpOnly: false,
-      maxAge: 72 * 60 * 60 * 1000,
-    });
+    // res.cookie('refreshToken', refreshToken, {
+    //   httpOnly: false,
+    //   maxAge: 72 * 60 * 60 * 1000,
+    // });
     res.json({
       _id: findUser?._id,
       firstname: findUser?.firstname,
@@ -73,7 +73,7 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
 // get current user
 const getCurrentUser = asyncHandler(async (req, res) => {
   try {
-    const token = req.cookies.refreshToken;
+    const token = req.headers['authorization'].replace('Bearer ', '');
 
     if (token) {
       try {
@@ -117,10 +117,10 @@ const loginAdmin = asyncHandler(async (req, res) => {
       },
       { new: true }
     );
-    res.cookie('refreshToken', refreshToken, {
-      httpOnly: false,
-      maxAge: 72 * 60 * 60 * 1000,
-    });
+    // res.cookie('refreshToken', refreshToken, {
+    //   httpOnly: false,
+    //   maxAge: 72 * 60 * 60 * 1000,
+    // });
     res.json({
       _id: findAdmin?._id,
       firstname: findAdmin?.firstname,
@@ -154,9 +154,8 @@ const handleRefreshToken = asyncHandler(async (req, res) => {
 // logout functionality
 
 const logout = asyncHandler(async (req, res) => {
-  const cookie = req.cookies;
-  if (!cookie?.refreshToken) throw new Error('No Refresh Token in Cookies');
-  const refreshToken = cookie.refreshToken;
+  const refreshToken = req.headers['authorization'].replace('Bearer ', '');
+  if (!refreshToken) throw new Error('No Refresh Token in Cookies');
   const user = await User.findOne({ refreshToken });
   if (!user) {
     res.clearCookie('refreshToken', {
