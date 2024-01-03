@@ -32,12 +32,7 @@ app.use(function (req, res, next) {
 app.use(
   cors({
     credentials: true,
-    origin: [
-      'http://localhost:3000',
-      'http://localhost:5000',
-      'https://ecommerce-staging-backend.vercel.app',
-      'https://ecommerce-staging-frontend.vercel.app',
-    ],
+    origin: '*',
   })
 );
 app.use(bodyParser.json());
