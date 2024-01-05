@@ -24,7 +24,12 @@ app.use(morgan('dev'));
 app.use(
   cors({
     credentials: true,
-    origin: '*',
+    origin: [
+      'http://localhost:3000',
+      'http://localhost:3001',
+      'https://ecommerce-staging-backend.vercel.app',
+      'https://ecommerce-staging-frontend.vercel.app',
+    ],
   })
 );
 app.use(bodyParser.json());
