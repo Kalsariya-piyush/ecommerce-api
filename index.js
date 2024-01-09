@@ -29,6 +29,7 @@ app.use(
       'http://localhost:3001',
       'https://ecommerce-staging-backend.vercel.app',
       'https://ecommerce-staging-frontend.vercel.app',
+      'https://clicon-prod.netlify.app'
     ],
   })
 );
