@@ -4,9 +4,8 @@ const asyncHandler = require('express-async-handler');
 const sendEmail = asyncHandler(async (data, req, res) => {
   var transporter = nodemailer.createTransport({
     // service: 'Gmail',
-    service: 'Gmail',
-    type: 'SMTP',
-    host: 'smtp.gmail.com',
+    host: 'sandbox.smtp.mailtrap.io',
+    port: 2525,
     secure: false,
     auth: {
       user: process.env.MAILTRAP_EMAIL_USER,
