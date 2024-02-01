@@ -26,9 +26,11 @@
     "nodemailer": "^6.8.0",
     "sharp": "^0.31.2",
     "slugify": "^1.6.5",
+    "swagger-ui-express": "^5.0.0",
     "uniqid": "^5.4.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "swagger-autogen": "^2.23.7"
   }
 }

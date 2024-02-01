@@ -17,6 +17,9 @@ const uploadRouter = require('./routes/uploadRoute');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger-output.json');
+
 const PORT = process.env.NODE_ENV_PORT;
 
 dbConnect();
@@ -26,10 +29,10 @@ app.use(
     credentials: true,
     origin: [
       'http://localhost:3000',
-      'http://localhost:3001',
+      'http://localhost:5000',
       'https://ecommerce-staging-backend.vercel.app',
       'https://ecommerce-staging-frontend.vercel.app',
-      'https://clicon-prod.netlify.app'
+      'https://clicon-prod.netlify.app',
     ],
   })
 );
@@ -46,6 +49,12 @@ app.use('/api/coupon', couponRouter);
 app.use('/api/color', colorRouter);
 app.use('/api/enquiry', enqRouter);
 app.use('/api/upload', uploadRouter);
+
+app.use(
+  '/api-docs',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument, { explorer: true })
+);
 
 app.get('/', async (req, res) => {
   res.send('Server is running ... !!!');
