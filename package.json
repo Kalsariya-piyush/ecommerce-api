@@ -26,12 +26,15 @@
     "nodemailer": "^6.8.0",
     "sharp": "^0.31.3",
     "slugify": "^1.6.5",
+    "swagger": "^0.7.5",
+    "swagger-ui": "^5.11.2",
     "swagger-ui-dist": "^5.11.2",
     "swagger-ui-express": "^4.0.0",
     "uniqid": "^5.4.0"
   },
   "devDependencies": {
     "@types/sharp": "^0.32.0",
+    "@types/swagger-ui-dist": "^3.30.4",
     "nodemon": "^2.0.22",
     "swagger-autogen": "^2.23.7"
   }
