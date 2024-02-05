@@ -5,7 +5,7 @@ const doc = {
     title: 'My Api',
     description: 'Description',
   },
-  host: 'localhost:5000',
+  host: 'https://ecommerce-api-staging.vercel.app',
   securityDefinitions: {
     bearerAuth: {
       type: 'apiKey',
