@@ -1,6 +1,6 @@
-const Brand = require("../models/brandModel");
-const asyncHandler = require("express-async-handler");
-const validateMongoDbId = require("../utils/validateMongodbId");
+const Brand = require('../models/brandModel');
+const asyncHandler = require('express-async-handler');
+const validateMongoDbId = require('../utils/validateMongodbId');
 
 const createBrand = asyncHandler(async (req, res) => {
   try {
@@ -10,6 +10,7 @@ const createBrand = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 });
+
 const updateBrand = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);
