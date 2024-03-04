@@ -31,6 +31,7 @@ app.use(
     origin: [
       'http://localhost:3000',
       'http://localhost:5000',
+      'http://localhost:3001',
       'https://ecommerce-staging-backend.vercel.app',
       'https://ecommerce-staging-frontend.vercel.app',
       'https://clicon-prod.netlify.app',
