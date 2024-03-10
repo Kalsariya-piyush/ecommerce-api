@@ -28,6 +28,7 @@ const {
   removeProductFromCart,
 } = require('../controller/userCtrl');
 const { authMiddleware, isAdmin } = require('../middlewares/authMiddleware');
+const { checkout, paymentVerification } = require('../controller/paymentCtrl');
 const router = express.Router();
 router.post('/register', createUser);
 router.post('/forgot-password-token', forgotPasswordToken);
@@ -38,6 +39,8 @@ router.put('/password', authMiddleware, updatePassword);
 router.post('/login', loginUserCtrl);
 router.post('/admin-login', loginAdmin);
 router.post('/cart', authMiddleware, userCart);
+router.post('/order/checkout', checkout);
+router.post('/order/paymentVerification', authMiddleware, paymentVerification);
 router.post('/cart/applycoupon', authMiddleware, applyCoupon);
 router.post('/cart/cash-order', authMiddleware, createOrder);
 router.get('/all-users', getallUser);
