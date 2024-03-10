@@ -420,7 +420,7 @@ const emptyCart = asyncHandler(async (req, res) => {
   validateMongoDbId(_id);
   try {
     const user = await User.findOne({ _id });
-    const cart = await Cart.findOneAndRemove({ orderby: user._id });
+    const cart = await Cart.remove({ userId: user._id });
     res.json(cart);
   } catch (error) {
     throw new Error(error);
@@ -489,6 +489,36 @@ const createOrder = asyncHandler(async (req, res) => {
     });
     const updated = await Product.bulkWrite(update, {});
     res.json({ message: 'success' });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+const createNewOrder = asyncHandler(async (req, res) => {
+  const {
+    totalPrice,
+    totalPriceAfterDiscount,
+    orderItems,
+    paymentInfo,
+    shippingInfo,
+  } = req.body;
+  const { _id } = req.user;
+  validateMongoDbId(_id);
+
+  try {
+    const order = await Order.create({
+      totalPrice,
+      totalPriceAfterDiscount,
+      orderItems,
+      paymentInfo,
+      shippingInfo,
+      user: _id,
+    });
+
+    res.send({
+      order,
+      success: true,
+    });
   } catch (error) {
     throw new Error(error);
   }
@@ -581,4 +611,5 @@ module.exports = {
   getOrderByUserId,
   getCurrentUser,
   removeProductFromCart,
+  createNewOrder,
 };
