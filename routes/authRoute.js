@@ -56,7 +56,11 @@ router.get('/cart', authMiddleware, getUserCart);
 router.get('/me', authMiddleware, getCurrentUser);
 router.get('/:id', authMiddleware, isAdmin, getaUser);
 router.delete('/empty-cart', authMiddleware, emptyCart);
-router.delete('/delete-product-cart', authMiddleware, removeProductFromCart);
+router.delete(
+  '/delete-product-cart/:cartItemId',
+  authMiddleware,
+  removeProductFromCart
+);
 router.delete('/:id', deleteaUser);
 router.put(
   '/order/update-order/:id',
