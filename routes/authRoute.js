@@ -27,6 +27,7 @@ const {
   getCurrentUser,
   removeProductFromCart,
   createNewOrder,
+  getMyOrders,
 } = require('../controller/userCtrl');
 const { authMiddleware, isAdmin } = require('../middlewares/authMiddleware');
 const { checkout, paymentVerification } = require('../controller/paymentCtrl');
@@ -42,11 +43,11 @@ router.post('/admin-login', loginAdmin);
 router.post('/cart', authMiddleware, userCart);
 router.post('/order/checkout', checkout);
 router.post('/order/paymentVerification', authMiddleware, paymentVerification);
-router.post('/cart/applycoupon', authMiddleware, applyCoupon);
-router.post('/cart/cash-order', authMiddleware, createOrder);
+// router.post('/cart/applycoupon', authMiddleware, applyCoupon);
+// router.post('/cart/cash-order', authMiddleware, createOrder);
 router.post('/cart/create-order', authMiddleware, createNewOrder);
 router.get('/all-users', getallUser);
-router.get('/get-orders', authMiddleware, getOrders);
+router.get('/getmyorders', authMiddleware, getMyOrders);
 router.get('/getallorders', authMiddleware, isAdmin, getAllOrders);
 router.post('/getorderbyuser/:id', authMiddleware, isAdmin, getAllOrders);
 router.get('/refresh', handleRefreshToken);
@@ -55,19 +56,19 @@ router.get('/wishlist', authMiddleware, getWishlist);
 router.get('/cart', authMiddleware, getUserCart);
 router.get('/me', authMiddleware, getCurrentUser);
 router.get('/:id', authMiddleware, isAdmin, getaUser);
-router.delete('/empty-cart', authMiddleware, emptyCart);
+// router.delete('/empty-cart', authMiddleware, emptyCart);
 router.delete(
   '/delete-product-cart/:cartItemId',
   authMiddleware,
   removeProductFromCart
 );
 router.delete('/:id', deleteaUser);
-router.put(
-  '/order/update-order/:id',
-  authMiddleware,
-  isAdmin,
-  updateOrderStatus
-);
+// router.put(
+//   '/order/update-order/:id',
+//   authMiddleware,
+//   isAdmin,
+//   updateOrderStatus
+// );
 router.put('/edit-user', authMiddleware, updatedUser);
 router.put('/save-address', authMiddleware, saveAddress);
 router.put('/block-user/:id', authMiddleware, isAdmin, blockUser);
