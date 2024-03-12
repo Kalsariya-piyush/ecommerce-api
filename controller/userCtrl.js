@@ -477,17 +477,17 @@ const getMyOrders = asyncHandler(async (req, res) => {
   }
 });
 
-// const emptyCart = asyncHandler(async (req, res) => {
-//   const { _id } = req.user;
-//   validateMongoDbId(_id);
-//   try {
-//     const user = await User.findOne({ _id });
-//     const cart = await Cart.remove({ userId: user._id });
-//     res.json(cart);
-//   } catch (error) {
-//     throw new Error(error);
-//   }
-// });
+const emptyCart = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  validateMongoDbId(_id);
+  try {
+    const user = await User.findOne({ _id });
+    const cart = await Cart.remove({ userId: user._id });
+    res.json(cart);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
 
 // const applyCoupon = asyncHandler(async (req, res) => {
 //   const { coupon } = req.body;
@@ -623,7 +623,7 @@ module.exports = {
   saveAddress,
   userCart,
   getUserCart,
-  // emptyCart,
+  emptyCart,
   // applyCoupon,
   // createOrder,
   // getOrders,

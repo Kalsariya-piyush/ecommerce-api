@@ -56,7 +56,7 @@ router.get('/wishlist', authMiddleware, getWishlist);
 router.get('/cart', authMiddleware, getUserCart);
 router.get('/me', authMiddleware, getCurrentUser);
 router.get('/:id', authMiddleware, isAdmin, getaUser);
-// router.delete('/empty-cart', authMiddleware, emptyCart);
+router.delete('/empty-cart', authMiddleware, emptyCart);
 router.delete(
   '/delete-product-cart/:cartItemId',
   authMiddleware,
