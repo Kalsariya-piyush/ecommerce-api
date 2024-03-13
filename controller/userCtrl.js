@@ -417,6 +417,8 @@ const getUserCart = asyncHandler(async (req, res) => {
 });
 
 const createNewOrder = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  validateMongoDbId(_id);
   const {
     totalPrice,
     totalPriceAfterDiscount,
@@ -424,10 +426,6 @@ const createNewOrder = asyncHandler(async (req, res) => {
     paymentInfo,
     shippingInfo,
   } = req.body;
-
-  const { _id } = req.user;
-
-  validateMongoDbId(_id);
 
   try {
     const order = await Order.create({
@@ -453,6 +451,22 @@ const getAllOrders = asyncHandler(async (req, res) => {
     const alluserorders = await Order.find().populate('user');
 
     res.json({ alluserorders });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+const removeOrder = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  const { orderId } = req.body;
+  validateMongoDbId(orderId);
+
+  try {
+    const deleteOrder = await Order.deleteOne({
+      userId: _id,
+      _id: orderId,
+    });
+    res.json(deleteOrder);
   } catch (error) {
     throw new Error(error);
   }
@@ -734,4 +748,5 @@ module.exports = {
   getMyOrders,
   getMonthWiseOrderIncome,
   getYearlyTotalOrders,
+  removeOrder,
 };

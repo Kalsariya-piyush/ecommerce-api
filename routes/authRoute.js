@@ -30,6 +30,7 @@ const {
     getMyOrders,
     getMonthWiseOrderIncome,
     getYearlyTotalOrders,
+    removeOrder,
 } = require('../controller/userCtrl');
 const { authMiddleware, isAdmin } = require('../middlewares/authMiddleware');
 const { checkout, paymentVerification } = require('../controller/paymentCtrl');
@@ -58,6 +59,7 @@ router.post(
     getMonthWiseOrderIncome
 );
 router.post('/getYearlyTotalOrders', authMiddleware, getYearlyTotalOrders);
+router.post('/removeOrder', authMiddleware, removeOrder);
 router.get('/refresh', handleRefreshToken);
 router.get('/logout', logout);
 router.get('/wishlist', authMiddleware, getWishlist);
@@ -65,6 +67,7 @@ router.get('/cart', authMiddleware, getUserCart);
 router.get('/me', authMiddleware, getCurrentUser);
 router.get('/:id', authMiddleware, isAdmin, getaUser);
 router.delete('/empty-cart', authMiddleware, emptyCart);
+router.delete('/remove-order/:orderId', authMiddleware, removeOrder);
 router.delete(
     '/delete-product-cart/:cartItemId',
     authMiddleware,
