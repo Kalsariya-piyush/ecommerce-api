@@ -458,7 +458,7 @@ const getAllOrders = asyncHandler(async (req, res) => {
 
 const removeOrder = asyncHandler(async (req, res) => {
   const { _id } = req.user;
-  const { orderId } = req.body;
+  const { orderId } = req.params;
   validateMongoDbId(orderId);
 
   try {
