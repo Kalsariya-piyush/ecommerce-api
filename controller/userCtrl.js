@@ -456,9 +456,35 @@ const getAllOrders = asyncHandler(async (req, res) => {
   }
 });
 
+const getSingleOrders = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const alluserorders = await Order.findOne({ _id: id })
+      .populate('orderItems.product')
+      .populate('orderItems.color');
+
+    res.json({ alluserorders });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+const updateOrder = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const alluserorders = await Order.findById(id);
+    alluserorders.orderStatus = req.body.orderStatus;
+    await alluserorders.save();
+
+    res.json({ alluserorders });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
 const removeOrder = asyncHandler(async (req, res) => {
   const { _id } = req.user;
-  const { orderId } = req.body;
+  const { orderId } = req.params;
   validateMongoDbId(orderId);
 
   try {
@@ -749,4 +775,6 @@ module.exports = {
   getMonthWiseOrderIncome,
   getYearlyTotalOrders,
   removeOrder,
+  getSingleOrders,
+  updateOrder,
 };

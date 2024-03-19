@@ -31,6 +31,8 @@ const {
     getMonthWiseOrderIncome,
     getYearlyTotalOrders,
     removeOrder,
+    getSingleOrders,
+    updateOrder,
 } = require('../controller/userCtrl');
 const { authMiddleware, isAdmin } = require('../middlewares/authMiddleware');
 const { checkout, paymentVerification } = require('../controller/paymentCtrl');
@@ -52,6 +54,8 @@ router.post('/cart/create-order', authMiddleware, createNewOrder);
 router.get('/all-users', getallUser);
 router.get('/getmyorders', authMiddleware, getMyOrders);
 router.get('/getallorders', authMiddleware, isAdmin, getAllOrders);
+router.get('/getaOrders/:id', authMiddleware, isAdmin, getSingleOrders);
+router.put('/updateOrder/:id', authMiddleware, isAdmin, updateOrder);
 router.post('/getorderbyuser/:id', authMiddleware, isAdmin, getAllOrders);
 router.post(
     '/getMonthWiseOrderIncome',
