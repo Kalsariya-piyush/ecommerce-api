@@ -17,7 +17,7 @@ const sendEmail = asyncHandler(async (data, req, res) => {
   async function main() {
     // send mail with defined transport object
     const mailOptions = await transporter.sendMail({
-      from: 'darshankalsariya29@gmail.com', // sender address
+      from: 'kalsariyapiyush95@gmail.com', // sender address
       to: data.to, // list of receivers
       subject: data.subject, // Subject line
       text: data.text, // plain text body
