@@ -35,6 +35,11 @@ app.use(
       'https://ecommerce-staging-backend.vercel.app',
       'https://ecommerce-staging-frontend.vercel.app',
       'https://clicon-prod.netlify.app',
+      'https://ecommerce-staging-backend.vercel.app',
+      'https://ecommerce-staging-frontend.vercel.app',
+      'https://clicon-prod.netlify.app',
+      'https://clicon-ecom.vercel.app',
+      'https://api.clicon-ecom.vercel.app',
     ],
   })
 );
